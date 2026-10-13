@@ -1,0 +1,191 @@
+ public static void DrawTriangle(Triangle triangle)
+    {
+        DrawLine(triangle.p1.X, triangle.p1.Y, triangle.p2.X, triangle.p2.Y);
+        DrawLine(triangle.p2.X, triangle.p2.Y, triangle.p3.X, triangle.p3.Y);
+        DrawLine(triangle.p3.X, triangle.p3.Y, triangle.p1.X, triangle.p2.Y);
+    }
+
+   
+
+    
+    public static void DrawLineInt(Vector2Int p1, Vector2Int p2)
+    {
+        if (MathF.Abs(p2.x - p1.x) > MathF.Abs(p2.y - p1.y))
+        {
+            drawLineH(p1.x, p1.y, p2.x, p2.y);
+        }
+        else
+        {
+            drawLineV(p1.x, p1.y, p2.x, p2.y);
+        }
+    }
+
+
+    public static void DrawLine(float x0, float y0, float x1, float y1)
+    {
+        if (MathF.Abs(x1 - x0) > MathF.Abs(y1 - y0))
+        {
+            drawLineH(x0, y0, x1, y1);
+        }
+        else
+        {
+            drawLineV(x0, y0, x1, y1);
+        }
+    }
+
+    public static void drawLineH(float x0, float y0, float x1, float y1)
+    {
+        if (x0 > x1)
+        {
+            (x0, x1) = (x1, x0);
+            (y0, y1) = (y1, y0);
+        }
+        
+        var dx = x1 - x0;
+        var dy = y1 - y0;
+
+        int dir;
+        if (dy < 0) { dir = -1; }
+        else { dir = 1; }
+        
+        dy *= dir;
+
+        if (dx != 0)
+        {
+            var y = y0;
+            var p = 2 * dy - dx;
+
+            for (int i = 0; i < dx + 1; i++)
+            {
+                Console.WriteLine(MathF.Round(y));
+                Console.WriteLine(MathF.Round(x0 + i));
+                SetPixel((int)MathF.Round(x0 + i) + i,(int)MathF.Round(y),Color.Black);
+                if (p >= 0)
+                {
+                    y += dir;
+                    p = p - 2 * dx;
+                }
+                p = p + 2 * dy;
+            }
+        }
+    }
+    public static void drawLineV(float x0, float y0, float x1, float y1)
+    {
+        if (y0 > y1)
+        {
+            (x0, x1) = (x1, x0);
+            (y0, y1) = (y1, y0);
+        }
+        
+        var dx = x1 - x0;
+        var dy = y1 - y0;
+
+        int dir;
+        if (dx < 0) { dir = -1; }
+        else { dir = 1; }
+        
+        dx *= dir;
+
+        if (dy != 0)
+        {
+            var x = x0;
+            var p = 2 * dx - dy;
+
+            for (int i = 0; i < dy + 1; i++)
+            {
+                Console.WriteLine(MathF.Round(x));
+                Console.WriteLine(MathF.Round(y0 + i));
+                SetPixel((int)MathF.Round(x),(int)MathF.Round(y0 + i),Color.Black);
+                if (p >= 0)
+                {
+                    x += dir;
+                    p = p - 2 * dy;
+                }
+                p = p + 2 * dx;
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+     public static void FillTriangle(Triangle triangle)
+        {
+            
+            float scaledP1x = ((triangle.p1.X + 1.0f) / 2.0f) * 800f;
+            float scaledP1y = ((triangle.p1.Y + 1.0f) / 2.0f) * 800f;
+            float scaledP1z = ((triangle.p1.Z + 1.0f) / 2.0f) * 800f;
+            
+            float scaledP2x = ((triangle.p2.X + 1.0f) / 2.0f) * 800f;
+            float scaledP2y = ((triangle.p2.Y + 1.0f) / 2.0f) * 800f;
+            float scaledP2z = ((triangle.p2.Z + 1.0f) / 2.0f) * 800f;
+            
+            float scaledP3x = ((triangle.p3.X + 1.0f) / 2.0f) * 800f;
+            float scaledP3y = ((triangle.p3.Y + 1.0f) / 2.0f) * 800f;
+            float scaledP3z = ((triangle.p3.Z + 1.0f) / 2.0f) * 800f;
+            
+            Vector3 scaledP1 = new Vector3(scaledP1x, scaledP1y, scaledP1z);
+            Vector3 scaledP2 = new Vector3(scaledP2x, scaledP2y, scaledP2z);
+            Vector3 scaledP3 = new Vector3(scaledP3x, scaledP3y, scaledP3z);
+          
+            
+            Vector3 center = (scaledP1 + scaledP2 + scaledP3) / 3;
+            Vector3 min = new Vector3(float.MaxValue);
+            Vector3 max = new Vector3(float.MinValue);
+            min = Vector3.Min(min, scaledP1);
+            min = Vector3.Min(min, scaledP2);
+            min = Vector3.Min(min, scaledP3);
+    
+            max = Vector3.Max(max, scaledP1);
+            max = Vector3.Max(max, scaledP2);
+            max = Vector3.Max(max, scaledP3);
+    
+            int minX = (int)MathF.Round(min.X, MidpointRounding.AwayFromZero);
+            int minY = (int)MathF.Round(min.Y, MidpointRounding.AwayFromZero);
+            
+            int maxX = (int)MathF.Round(max.X, MidpointRounding.AwayFromZero);
+            int maxY = (int)MathF.Round(max.Y, MidpointRounding.AwayFromZero);
+    
+            Vector3Int centerInt = new Vector3Int(
+                    (int)MathF.Round(center.X, MidpointRounding.AwayFromZero),
+                    (int)MathF.Round(center.Y, MidpointRounding.AwayFromZero),
+                    (int)MathF.Round(center.Z, MidpointRounding.AwayFromZero));
+                    
+        
+            
+            for (int x = 0 ; x<800; x++)
+            {
+                for (int y = 0; y < 800; y++)
+                {
+                  int pixelX = x + centerInt.x;
+                  int pixelY = y + centerInt.y;
+                  
+                  Vector3 v0 = scaledP2 - scaledP1;
+                  Vector3 v1 = scaledP3 - scaledP1;
+                  Vector3 v2 = new Vector3(x, y, 0) - scaledP1;
+                  float dot00 = Dot(v0, v0);
+                  float dot01 = Dot(v0, v1);
+                  float dot02 = Dot(v0, v2);
+                  float dot11 = Dot(v1, v1);
+                  float dot12 = Dot(v1, v2);
+    
+                  float invDenom = 1.0f / (dot00 * dot11 - dot01 * dot01);
+                  float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+                  float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+         
+    
+                  if ((u >= 0) && (v >= 0) && (u + v < 1))
+                  {
+                      SetPixel(x,y,Color.Red);
+                  }
+                  
+              
+    
+                }
+            }
+            
+            
+    
+        }
