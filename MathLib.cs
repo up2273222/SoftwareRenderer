@@ -86,15 +86,15 @@ public static class MathLib
     public static float SignedTriArea(Triangle triangle)
     {
         return 0.5f * (((triangle.p2.Y - triangle.p1.Y) * (triangle.p2.X + triangle.p1.X) +
-                       (triangle.p3.Y - triangle.p2.Y) * triangle.p3.X + triangle.p2.X)
-                     + (triangle.p1.Y- triangle.p3.Y) * (triangle.p1.X + triangle.p3.X));
+                       (triangle.p3.Y - triangle.p2.Y) * (triangle.p3.X + triangle.p2.X)
+                     + (triangle.p1.Y- triangle.p3.Y) * (triangle.p1.X + triangle.p3.X)));
 
 
     }
     
     public static float SignedTriArea(float ax, float ay, float bx, float by, float cx, float cy)
     {
-        return 0.5f * (((by - ay) * (bx + ax) + (cy - by) * cx + bx) + (ay- cy) * (ax + cx));
+        return 0.5f * (((by - ay) * (bx + ax) + (cy - by) * (cx + bx) + (ay- cy) * (ax + cx)));
 
 
     }

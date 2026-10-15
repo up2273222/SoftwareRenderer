@@ -83,11 +83,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\PSGAMCS\\SoftwareRendererCS\\SoftwareRendererCS.csproj",
+      "projectUniqueName": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRendererCS.csproj",
       "projectName": "SoftwareRendererCS",
-      "projectPath": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\PSGAMCS\\SoftwareRendererCS\\SoftwareRendererCS.csproj",
+      "projectPath": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRendererCS.csproj",
       "packagesPath": "C:\\Users\\archi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\PSGAMCS\\SoftwareRendererCS\\obj\\",
+      "outputPath": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRenderer\\obj\\",
       "projectStyle": "PackageReference",
       "UsingMicrosoftNETSdk": false,
       "configFilePaths": [

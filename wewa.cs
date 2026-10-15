@@ -22,14 +22,14 @@ public class Program
         List<Model> modelsInScene = new List<Model>();
         Model model = new Model();
         
-        int dimension = 50;
+        int dimension = 1;
         
         Matrix4x4 ortho = CreateOrthographicProjectionMatrix(-dimension,dimension,-dimension,dimension,-100,100);
 
-        model = LoadOBJ("C:/Users/archi/Documents/SoftwareRenderer/PSGAMCS/SoftwareRendererCS/Mesh_Goose.obj");
+        model = LoadOBJ("C:/Users/archi/Documents/SoftwareRenderer/SoftwareRenderer/SoftwareRenderer/diablo3_pose.obj");
         modelsInScene.Add(model);
         
-    
+       
         
        
    
@@ -61,7 +61,7 @@ public class Program
                     triangle.p3 = TransformPoint(ortho, triangle.p3);
                     
           
-                    DrawDDATriangle(triangle); 
+                   // DrawDDATriangle(triangle); 
                     FillTriangle(triangle);
                 }
             }
@@ -75,6 +75,7 @@ public class Program
                 Raylib.EndDrawing();
                 ClearFrame();
                 frame++;
+                Console.WriteLine(Raylib.GetFPS());
 
         }
         Raylib.CloseWindow();
@@ -82,7 +83,7 @@ public class Program
     
       
 
-        WriteImageToFile();
+      //  WriteImageToFile();
    
     }
 

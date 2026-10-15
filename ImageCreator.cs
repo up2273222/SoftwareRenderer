@@ -10,13 +10,17 @@ namespace SoftwareRendererCS;
 public static class ImageCreator
 {
     public static Vector3[,] image;
+    public static Vector3[,] depthBuffer;
 
     
     public static byte[] imageBytes;
 
+    private static Random rand;
+
     public static void InitByteArray()
     {
         imageBytes = new byte[800 * 800 * 4];
+        rand = new Random();
     }
 
     public static void ClearFrame()
@@ -89,14 +93,17 @@ public static class ImageCreator
         float scaledP1x = ((triangle.p1.X + 1.0f) / 2.0f) * 800f;
         float scaledP1y = ((triangle.p1.Y + 1.0f) / 2.0f) * 800f;
         float scaledP1z = ((triangle.p1.Z + 1.0f) / 2.0f) * 800f;
+       // float scaledP1w = ((triangle.p1.W + 1.0f) / 2.0f) * 800f;
         
         float scaledP2x = ((triangle.p2.X + 1.0f) / 2.0f) * 800f;
         float scaledP2y = ((triangle.p2.Y + 1.0f) / 2.0f) * 800f;
         float scaledP2z = ((triangle.p2.Z + 1.0f) / 2.0f) * 800f;
+      //  float scaledP2w = ((triangle.p1.W + 1.0f) / 2.0f) * 800f;
         
         float scaledP3x = ((triangle.p3.X + 1.0f) / 2.0f) * 800f;
         float scaledP3y = ((triangle.p3.Y + 1.0f) / 2.0f) * 800f;
         float scaledP3z = ((triangle.p3.Z + 1.0f) / 2.0f) * 800f;
+      //  float scaledP3w = ((triangle.p1.W + 1.0f) / 2.0f) * 800f;
         
         Vector3 scaledP1 = new Vector3(scaledP1x, scaledP1y, scaledP1z);
         Vector3 scaledP2 = new Vector3(scaledP2x, scaledP2y, scaledP2z);
@@ -110,7 +117,7 @@ public static class ImageCreator
         int bbmaxy = (int)MathF.Round(Math.Max(Math.Max(scaledP1.Y,scaledP2.Y),scaledP3.Y), MidpointRounding.AwayFromZero);
         
     
-        
+  
         
 
         float totalArea = SignedTriArea(scaledTriangle);
@@ -125,9 +132,9 @@ public static class ImageCreator
                 float b = SignedTriArea(x,y, scaledP3.X,scaledP3.Y,scaledP1.X,scaledP1.Y)/totalArea;
                 float c = SignedTriArea(x,y,scaledP1.X,scaledP1.Y,scaledP2.X,scaledP2.Y)/totalArea;
 
-           
                 
-               // if (a < 0 || b < 0 || c < 0) { continue; }
+                
+                if (a < 0 || b < 0 || c < 0) { continue; }
                 SetPixel(x,y,Color.Red);
             }
         }
@@ -212,6 +219,26 @@ public static class ImageCreator
             }
         }
         image = newimage;
+    }
+    
+    public static void CreateNewDepthBuffer()
+    {
+        int width = 800;
+        int height = 800;
+        Vector3[,] newDepth = new Vector3[width, height];
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                float r = 0;
+                float g = 0;
+                float b = 0;
+                newDepth[x, y] = new Vector3(r, g, b);
+            }
+        }
+
+        depthBuffer = newDepth;
     }
 
     public static void SetPixel(int x, int y, Color c )

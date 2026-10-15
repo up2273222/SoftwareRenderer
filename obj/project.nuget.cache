@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q1kznYHBRc4=",
+  "dgSpecHash": "Bzb6yw/ovW4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\PSGAMCS\\SoftwareRendererCS\\SoftwareRendererCS.csproj",
+  "projectFilePath": "C:\\Users\\archi\\Documents\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRenderer\\SoftwareRendererCS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\archi\\.nuget\\packages\\raylib-cs\\8.1.0\\raylib-cs.8.1.0.nupkg.sha512"
   ],

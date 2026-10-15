@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SoftwareRendererCS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9028408f4ed027a8bad75a746eb797d88e01aea")]
 [assembly: System.Reflection.AssemblyProductAttribute("SoftwareRendererCS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SoftwareRendererCS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
